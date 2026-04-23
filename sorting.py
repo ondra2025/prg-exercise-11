@@ -26,14 +26,31 @@ def selection_sort(numbers):
 #     nums[j], nums[i] = nums[i], nums[j]
 #     return nums
 
+import matplotlib.pyplot as plt
 def bubble_sort(numbers):
     nums = numbers.copy()
     n = len(nums)
+    plt.ion()
+    plt.show()
     for i in range(n-1):
         for j in range(n-1):
-            if nums[j]>nums[j+1]:
-                nums[j], nums[j+1] = nums[j+1], nums[j]
+            index_highlight1 = j
+            index_highlight2 = j + 1
+            colors = ["steelblue"] * len(nums)
+            colors[index_highlight1] = "tomato"
+            colors[index_highlight2] = "tomato"
+            plt.clf()
+            plt.bar(range(len(nums)), nums, color=colors)
+            plt.title("Bubble Sort")
+            plt.pause(0.1)
+            if nums[j] > nums[j + 1]:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+    plt.ioff()
+    plt.show()
     return nums
+
+
+
 
 if __name__ == "__main__":
     values = random_numbers(10)  # 10 čísel v rozsahu 0–100
